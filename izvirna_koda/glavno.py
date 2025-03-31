@@ -1,9 +1,8 @@
+
 import pygame, sys
-
 from konst import *
-from igra import Igra
+from izris_igre import Igra
 
-# Inicializacija in glavna zanka - Eman
 
 class Glavno:
 
@@ -14,11 +13,15 @@ class Glavno:
         pygame.display.set_caption("Šah")
         self.igra = Igra()
     
-
+    # Glavna izvrsilna zanka - Eman
     def glavnazanka(self):
         
+        igra = self.igra
+        zaslon = self.screen
+
         while True:
-            self.igra.pokazi_ozadje(self.screen)
+            igra.pokazi_ozadje(zaslon)
+            igra.pokazi_figure(zaslon)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

@@ -1,7 +1,8 @@
+
 # Dimenzije zaslona - Eman
 SIRINA = 800
 VISINA = 800
 
-# - Dimenzije plosce
+# Dimenzije plosce - Eman
 VRSTICE, STOLPCI = 8, 8
-KVADRATEK_VELIKOST = SIRINA // STOLPCI
+POLJE_VELIKOST = SIRINA // STOLPCI
