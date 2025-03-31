@@ -18,6 +18,7 @@ class Glavno:
         
         igra = self.igra
         zaslon = self.screen
+        plosca = self.igra.plosca
         vleka = self.igra.vleka
 
         while True:
@@ -31,7 +32,12 @@ class Glavno:
                 # Naredi ob pritisku miske
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     vleka.update_mouse(event.pos)
-                    kliknjena_vrstics = vleka.miskaY // POLJE_VELIKOST
+                    kliknjena_vrstica = vleka.miskaY // POLJE_VELIKOST
+                    kliknjen_stolpec = vleka.miskaX // POLJE_VELIKOST
+
+                    # Preveri ali ima polje ze figuro
+                    if plosca.polja[kliknjena_vrstica][kliknjen_stolpec].ima_figuro():
+                        figura = plosca.polja[kliknjena_vrstica][kliknjen_stolpec].figura
 
                 # Naredi ob premiku miske
                 elif event.type == pygame.MOUSEMOTION:
