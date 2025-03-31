@@ -2,15 +2,17 @@
 import pygame
 from konst import *
 from plosca import Plosca
+from vleka import Vleka
 
 
-# Izrise igro - Eman
 class Igra:
 
+    # Inicializacija - Eman
     def __init__(self):
         self.plosca = Plosca()
+        self.vleka = Vleka()
 
-    # - Izris ozadja
+    # - Izris ozadja - Eman
     def pokazi_ozadje(self, surface):
         
         for vrstica in range(VRSTICE):
