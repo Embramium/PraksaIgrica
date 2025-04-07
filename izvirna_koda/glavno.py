@@ -26,11 +26,12 @@ class Glavno:
             igra.pokazi_ozadje(zaslon)
             igra.pokazi_figure(zaslon)
 
-            # Dogodki - Eman
+            # Dogodki - Žiga
             for event in pygame.event.get():
 
                 # Naredi ob pritisku miske
                 if event.type == pygame.MOUSEBUTTONDOWN:
+
                     vleka.update_mouse(event.pos)
                     kliknjena_vrstica = vleka.miskaY // POLJE_VELIKOST
                     kliknjen_stolpec = vleka.miskaX // POLJE_VELIKOST
@@ -38,10 +39,13 @@ class Glavno:
                     # Preveri ali ima polje ze figuro
                     if plosca.polja[kliknjena_vrstica][kliknjen_stolpec].ima_figuro():
                         figura = plosca.polja[kliknjena_vrstica][kliknjen_stolpec].figura
+                        vleka.shrani_zacetno_poz(event.pos)
+                        vleka.vleci_figuro(figura)
 
                 # Naredi ob premiku miske
                 elif event.type == pygame.MOUSEMOTION:
-                    pass
+                    if vleka.vleka:
+                        vleka.posodobi_blit(zaslon)
                 
                 # Naredi ob spustu miske
                 elif event.type == pygame.MOUSEBUTTONUP:
@@ -49,6 +53,7 @@ class Glavno:
 
                 # Naredi ob izhodu
                 if event.type == pygame.QUIT:
+
                     pygame.quit()
                     sys.exit()
             

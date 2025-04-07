@@ -1,7 +1,6 @@
 
 import os
 
-
 class Figura:
 
     # Definicija figur - Eman
@@ -25,6 +24,7 @@ class Figura:
         self.slika = os.path.join(f'sredstva/slike/slike-{velikost}px/{self.barva}_{self.ime}.png')
 
     def dodaj_poteze(self, poteza):
+
         self.poteze.append(poteza)
 
 # Inicializacija vseh figur - Eman
@@ -42,24 +42,29 @@ class Kmet(Figura):
 class Skakac(Figura):
 
     def __init__(self, barva):
+
         super().__init__('skakac', barva, 3.0)
 
 class Lovec(Figura):
 
     def __init__(self, barva):
+
         super().__init__('lovec', barva, 3.0)
 
 class Trdnjava(Figura):
 
     def __init__(self, barva):
+
         super().__init__('trdnjava', barva, 5.0)
 
 class Kraljica(Figura):
 
     def __init__(self, barva):
+
         super().__init__('kraljica', barva, 9.0)
 
 class Kralj(Figura):
 
     def __init__(self, barva):
+        
         super().__init__('kralj', barva, 10000.0)
