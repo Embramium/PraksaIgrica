@@ -9,6 +9,7 @@ class Igra:
 
     # Inicializacija - Eman
     def __init__(self):
+        
         self.plosca = Plosca()
         self.vleka = Vleka()
 
