@@ -17,7 +17,7 @@ class Vleka():
     # Blit metode
     def posodobiBlit(self, surface):
 
-        self.figura.nastavi_sliko(velikost = 128)
+        self.figura.nastaviSliko(velikost = 128)
         slika = self.figura.slika
 
         slika_var = pygame.image.load(slika)

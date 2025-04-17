@@ -33,12 +33,12 @@ class Igra:
             for stolpec in range(STOLPCI):
 
                 # Preveri ce je na polju figura - Eman
-                if self.plosca.polja[vrstica][stolpec].ima_figuro():
+                if self.plosca.polja[vrstica][stolpec].imaFiguro():
                     figura = self.plosca.polja[vrstica][stolpec].figura
 
                     # Dodeli sliko in izrise (razen vlecenih) - Eman
                     if figura is not self.vleka.figura:
-                        figura.nastavi_sliko(velikost = 80)
+                        figura.nastaviSliko(velikost = 80)
                         slika_var = pygame.image.load(figura.slika)
                         slika_center = stolpec * POLJE_VELIKOST + POLJE_VELIKOST // 2, vrstica * POLJE_VELIKOST + POLJE_VELIKOST // 2
                         figura.slika_rect =slika_var.get_rect(center = slika_center)
