@@ -37,7 +37,7 @@ class Igra:
                     figura = self.plosca.polja[vrstica][stolpec].figura
 
                     # Dodeli sliko in izrise - Eman
-                    slika = pygame.image.load(figura.slika)
+                    slika_var = pygame.image.load(figura.slika)
                     slika_center = stolpec * POLJE_VELIKOST + POLJE_VELIKOST // 2, vrstica * POLJE_VELIKOST + POLJE_VELIKOST // 2
                     figura.slika_rect =slika.get_rect(center = slika_center)
-                    surface.blit(slika, figura.slika_rect)
+                    surface.blit(slika_var, figura.slika_rect)

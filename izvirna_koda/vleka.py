@@ -18,6 +18,11 @@ class Vleka():
     def posodobi_blit(self, surface):
 
         self.figura.nastavi_sliko(velikost = 120)
+        slika = self.figura.slika
+
+        slika_var = pygame.image.load(slika)
+        slika_center = (self.miskaX, self.miskaY)
+        self.figura.slika_rect = slika_var.get_rect(center=slika_center)
 
     def update_mouse(self, pozicija):
 
