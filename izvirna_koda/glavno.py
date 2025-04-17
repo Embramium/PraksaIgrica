@@ -36,7 +36,7 @@ class Glavno:
                     kliknjena_vrstica = vleka.miskaY // POLJE_VELIKOST
                     kliknjen_stolpec = vleka.miskaX // POLJE_VELIKOST
 
-                    # Preveri ali ima polje ze figuro
+                    # Ce ima polje ze figuro
                     if plosca.polja[kliknjena_vrstica][kliknjen_stolpec].ima_figuro():
                         figura = plosca.polja[kliknjena_vrstica][kliknjen_stolpec].figura
                         vleka.shrani_zacetno_poz(event.pos)
