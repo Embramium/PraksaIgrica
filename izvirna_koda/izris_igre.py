@@ -13,8 +13,8 @@ class Igra:
         self.plosca = Plosca()
         self.vleka = Vleka()
 
-    # - Izris ozadja - Eman
-    def pokazi_ozadje(self, surface):
+    # Blit metode - Eman
+    def pokaziOzadje(self, surface):
         
         for vrstica in range(VRSTICE):
             for stolpec in range(STOLPCI):
@@ -27,7 +27,7 @@ class Igra:
 
                 pygame.draw.rect(surface, barva, plosca)
 
-    def pokazi_figure(self, surface):
+    def pokaziFigure(self, surface):
 
         for vrstica in range(VRSTICE):
             for stolpec in range(STOLPCI):
@@ -36,8 +36,10 @@ class Igra:
                 if self.plosca.polja[vrstica][stolpec].ima_figuro():
                     figura = self.plosca.polja[vrstica][stolpec].figura
 
-                    # Dodeli sliko in izrise - Eman
-                    slika_var = pygame.image.load(figura.slika)
-                    slika_center = stolpec * POLJE_VELIKOST + POLJE_VELIKOST // 2, vrstica * POLJE_VELIKOST + POLJE_VELIKOST // 2
-                    figura.slika_rect =slika.get_rect(center = slika_center)
-                    surface.blit(slika_var, figura.slika_rect)
+                    # Dodeli sliko in izrise (razen vlecenih) - Eman
+                    if figura is not self.vleka.figura:
+                        figura.nastavi_sliko(velikost = 80)
+                        slika_var = pygame.image.load(figura.slika)
+                        slika_center = stolpec * POLJE_VELIKOST + POLJE_VELIKOST // 2, vrstica * POLJE_VELIKOST + POLJE_VELIKOST // 2
+                        figura.slika_rect =slika_var.get_rect(center = slika_center)
+                        surface.blit(slika_var, figura.slika_rect)

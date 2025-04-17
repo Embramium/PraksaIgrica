@@ -2,6 +2,7 @@
 from konst import *
 from polje import Polje
 from figura import *
+from poteza import Poteza
 
 
 class Plosca:
@@ -12,8 +13,61 @@ class Plosca:
         self.polja = [[0, 0, 0, 0, 0, 0, 0, 0] for stolpec in range(STOLPCI)]
 
         self._ustvari()
-        self._dodaj_figure('bela')
-        self._dodaj_figure('crna')
+        self._dodajFigure('bela')
+        self._dodajFigure('crna')
+
+    def zracunajPoteze(self, figura, vrstica, stolpec):
+        
+        # Zracunaj vse mozne poteze dolocene figure na dolocenem mestu - Eman
+        
+        def skakacPoteze():
+            
+            # 8 moznih potez
+            mozne_poteze = [
+                (vrstica -2, stolpec +1),
+                (vrstica -1, stolpec +2),
+                (vrstica +1, stolpec +2),
+                (vrstica +2, stolpec +1),
+                (vrstica +2, stolpec -1),
+                (vrstica +1, stolpec -2),
+                (vrstica -1, stolpec -2),
+                (vrstica -2, stolpec -1)
+            ]
+
+            for mozna_poteza in mozne_poteze:
+                mozna_poteza_vrstica, mozna_poteza_stolpec = mozna_poteza
+
+                if Polje.vDosegu(mozna_poteza_vrstica, mozna_poteza_stolpec):
+                    if self.polja[mozna_poteza_vrstica] [mozna_poteza_stolpec].praznoAliNasprotnik(figura.barva):
+
+                        # Ustvari objekte iz polj v vprasanju
+                        zacetno = Polje(vrstica, stolpec)
+                        koncno = Polje(mozna_poteza_vrstica, mozna_poteza_stolpec)
+
+                        # Ustvari nove objekte "poteze" in dodaj
+                        poteza = Poteza(zacetno, koncno)
+                        figura.dodaj_potezo(poteza)
+
+
+
+        if isinstance(figura, Kmet):
+            pass
+
+        elif isinstance(figura, Skakac):
+            skakacPoteze()
+
+        elif isinstance(figura, Lovec):
+            pass
+
+        elif isinstance(figura, Trdnjava):
+            pass
+
+        elif isinstance(figura, Kraljica):
+            pass
+
+        elif isinstance(figura, Kralj):
+            pass
+
 
     def _ustvari(self):
 
@@ -21,7 +75,7 @@ class Plosca:
             for stolpec in range(STOLPCI):
                 self.polja[vrstica][stolpec] = Polje(vrstica, stolpec)
 
-    def _dodaj_figure(self, barva):
+    def _dodajFigure(self, barva):
         
         if barva == 'bela':
             kmeti_vrstica, vrstica_ostalo = 6, 7

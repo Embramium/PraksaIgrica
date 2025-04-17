@@ -15,15 +15,15 @@ class Figura:
         self.vrednost = vrednost * znak_vrednosti
 
         self.slika = slika
-        self.nastavi_sliko()
+        self.nastaviSliko()
         self.slika_rect = slika_rect
 
     # Nastavi primerno sliko iz sredstev - Eman
-    def nastavi_sliko(self, velikost = 80):
+    def nastaviSliko(self, velikost = 80):
         
         self.slika = os.path.join(f'sredstva/slike/slike-{velikost}px/{self.barva}_{self.ime}.png')
 
-    def dodaj_poteze(self, poteza):
+    def dodajPotezo(self, poteza):
 
         self.poteze.append(poteza)
 

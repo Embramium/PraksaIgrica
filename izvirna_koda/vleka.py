@@ -14,31 +14,35 @@ class Vleka():
         self.zacetna_vrstica = 0
         self.zacetni_stolpec = 0
 
-    # Povecaj sliko med drzanjem
-    def posodobi_blit(self, surface):
+    # Blit metode
+    def posodobiBlit(self, surface):
 
-        self.figura.nastavi_sliko(velikost = 120)
+        self.figura.nastavi_sliko(velikost = 128)
         slika = self.figura.slika
 
         slika_var = pygame.image.load(slika)
         slika_center = (self.miskaX, self.miskaY)
         self.figura.slika_rect = slika_var.get_rect(center=slika_center)
 
-    def update_mouse(self, pozicija):
+        surface.blit(slika_var, self.figura.slika_rect)
+
+
+
+    def posodobiMisko(self, pozicija):
 
         self.miskaX, self.miskaY = pozicija
 
-    def shrani_zacetno_poz(self, pozicija):
+    def shraniZacetnoPoz(self, pozicija):
 
         self.zacetna_vrstica = pozicija[1] // POLJE_VELIKOST
         self.zacetni_stolpec = pozicija[0] // POLJE_VELIKOST
 
-    def vleci_figuro(self, figura):
+    def vleciFiguro(self, figura):
 
         self.figura = figura
         self.vleka = True
 
-    def ne_vleci_figuro(self, figura):
+    def nehajVlectFiguro(self,):
 
         self.figura = None
         self.vleka = False
