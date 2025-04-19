@@ -23,7 +23,9 @@ class Glavno:
 
         while True:
 
+            # Osnovno zaporedje za prikaz igre (Metode prikazovanja)
             igra.pokaziOzadje(zaslon)
+            igra.pokaziPoteze(zaslon)
             igra.pokaziFigure(zaslon)
 
             if vleka.vleka:
@@ -39,18 +41,29 @@ class Glavno:
                     kliknjena_vrstica = vleka.miskaY // POLJE_VELIKOST
                     kliknjen_stolpec = vleka.miskaX // POLJE_VELIKOST
 
-                    # Ce ima polje ze figuro
+                    # Ce ima polje figuro
                     if plosca.polja[kliknjena_vrstica][kliknjen_stolpec].imaFiguro():
                         figura = plosca.polja[kliknjena_vrstica][kliknjen_stolpec].figura
+                        plosca.zracunajPoteze(figura, kliknjena_vrstica, kliknjen_stolpec)
                         vleka.shraniZacetnoPoz(event.pos)
                         vleka.vleciFiguro(figura)
+
+                        # Metode prikazovanja
+                        igra.pokaziOzadje(zaslon)
+                        igra.pokaziPoteze(zaslon)
+                        igra.pokaziFigure(zaslon)
+
 
                 # Naredi ob premiku miske
                 elif event.type == pygame.MOUSEMOTION:
                     if vleka.vleka:
                         vleka.posodobiMisko(event.pos)
+
+                        # Metode prikazovanja
                         igra.pokaziOzadje(zaslon)
+                        igra.pokaziPoteze(zaslon)
                         igra.pokaziFigure(zaslon)
+
                         vleka.posodobiBlit(zaslon)
                 
                 # Naredi ob spustu miske

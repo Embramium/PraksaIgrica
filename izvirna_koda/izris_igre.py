@@ -43,6 +43,7 @@ class Igra:
                         slika_center = stolpec * POLJE_VELIKOST + POLJE_VELIKOST // 2, vrstica * POLJE_VELIKOST + POLJE_VELIKOST // 2
                         figura.slika_rect =slika_var.get_rect(center = slika_center)
                         surface.blit(slika_var, figura.slika_rect)
+                        
     def pokaziPoteze(self, surface):
         if self.vleka.vleka:
             figura = self.vleka.figura
@@ -52,4 +53,6 @@ class Igra:
 
                 barva = "#C86464" if (poteza.koncno.vrstica + poteza.koncno.stolpec) % 2 == 0 else "#C84646"
                 polje = (poteza.koncno.stolpec * POLJE_VELIKOST, poteza.koncno.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
+
+                pygame.draw.rect(surface, barva, polje)
                 
