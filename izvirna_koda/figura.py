@@ -27,6 +27,10 @@ class Figura:
 
         self.poteze.append(poteza)
 
+    def pobrisiPoteze(self):
+
+        self.poteze = []
+
 # Inicializacija vseh figur - Eman
 class Kmet(Figura):
 

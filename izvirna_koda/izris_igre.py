@@ -3,13 +3,15 @@ import pygame
 from konst import *
 from plosca import Plosca
 from vleka import Vleka
-
+from polje import Polje
 
 class Igra:
 
     # Inicializacija - Eman
     def __init__(self):
         
+        self.naslednji_igralec = "bela"
+        self.prekrito_polje = None
         self.plosca = Plosca()
         self.vleka = Vleka()
 
@@ -48,11 +50,38 @@ class Igra:
         if self.vleka.vleka:
             figura = self.vleka.figura
 
-            # Pojdi skozi vse validne poteze
+            # Pojdi skozi vse validne poteze in prikazi
             for poteza in figura.poteze:
 
                 barva = "#C86464" if (poteza.koncno.vrstica + poteza.koncno.stolpec) % 2 == 0 else "#C84646"
                 polje = (poteza.koncno.stolpec * POLJE_VELIKOST, poteza.koncno.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
 
                 pygame.draw.rect(surface, barva, polje)
-                
+    
+    def pokaziZadnjoPotezo(self, surface):
+        if self.plosca.zadnja_poteza:
+            zacetno = self.plosca.zadnja_poteza.zacetno
+            koncno = self.plosca.zadnja_poteza.koncno
+            
+            # Prikazi potezo
+            for poz in [zacetno, koncno]:
+                barva = (244, 247, 116) if (poz.vrstica + poz.stolpec) % 2 == 0 else (172, 195, 51)
+                polje = (poz.stolpec * POLJE_VELIKOST, poz.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
+                pygame.draw.rect(surface, barva, polje)
+    
+    def pokaziPrekrito(self, surface):
+        
+        if self.prekrito_polje:
+            barva = (50,50,50)
+            polje = (self.prekrito_polje.stolpec * POLJE_VELIKOST, self.prekrito_polje.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
+            pygame.draw.rect(surface, barva, polje, width=3)
+            
+    # Druge metode (metode ki niso za izris)
+    
+    def naslednjaPoteza(self):
+        
+        self.naslednji_igralec = "bela" if self.naslednji_igralec == "crna" else "crna"
+    
+    def nastavi_prekrito(self, vrstica, stolpec):
+        
+        self.prekrito_polje = self.plosca.polja[vrstica][stolpec]

@@ -8,6 +8,10 @@ class Polje:
         self.stolpec = stolpec
         self.figura = figura
 
+    def __eq__(self, other):
+        
+        return self.vrstica == other.vrstica and self.stolpec == other.stolpec
+
     def imaFiguro(self):
 
         return self.figura != None

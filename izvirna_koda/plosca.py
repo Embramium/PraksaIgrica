@@ -12,9 +12,28 @@ class Plosca:
         
         self.polja = [[0, 0, 0, 0, 0, 0, 0, 0] for stolpec in range(STOLPCI)]
 
+        self.zadnja_poteza = None
         self._ustvari()
         self._dodajFigure('bela')
         self._dodajFigure('crna')
+
+    def premik(self, figura, poteza):
+
+        zacetno = poteza.zacetno
+        koncno = poteza.koncno
+
+        # Posodobitev konzolne plosce
+        self.polja[zacetno.vrstica][zacetno.stolpec].figura = None
+        self.polja[koncno.vrstica][koncno.stolpec].figura = figura
+        figura.premaknjen = True
+
+        # Pobrise seznam pravilnih potez in nastavi zadnjo potezo
+        figura.pobrisiPoteze()
+        self.zadnja_poteza = poteza
+
+    def pravilniPremik(self, figura, poteza):
+
+        return poteza in figura.poteze
 
     def zracunajPoteze(self, figura, vrstica, stolpec):
         
