@@ -18,6 +18,7 @@ class Igra:
     # Blit metode - Eman
     def pokaziOzadje(self, surface):
         
+        izgled = self.konfig.izgled
         for vrstica in range(VRSTICE):
             for stolpec in range(STOLPCI):
                 if (vrstica + stolpec) % 2 == 0:
@@ -72,7 +73,7 @@ class Igra:
     def pokaziPrekrito(self, surface):
         
         if self.prekrito_polje:
-            barva = (50,50,50)
+            barva = (180, 180, 180)
             polje = (self.prekrito_polje.stolpec * POLJE_VELIKOST, self.prekrito_polje.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
             pygame.draw.rect(surface, barva, polje, width=3)
             
