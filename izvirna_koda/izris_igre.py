@@ -4,6 +4,7 @@ from konst import *
 from plosca import Plosca
 from vleka import Vleka
 from polje import Polje
+from konfig import Konfig
 
 class Igra:
 
@@ -14,21 +15,43 @@ class Igra:
         self.prekrito_polje = None
         self.plosca = Plosca()
         self.vleka = Vleka()
+        self.konfig = Konfig()
 
     # Blit metode - Eman
     def pokaziOzadje(self, surface):
         
         izgled = self.konfig.izgled
+        
         for vrstica in range(VRSTICE):
             for stolpec in range(STOLPCI):
-                if (vrstica + stolpec) % 2 == 0:
-                    barva = (210, 210, 210)
-                else:
-                    barva = (90, 90, 90)
+                
+                barva = izgled.ozadje.svetlo if (vrstica + stolpec) % 2 == 0 else izgled.ozadje.temno 
 
                 polje = (stolpec * POLJE_VELIKOST, vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
 
                 pygame.draw.rect(surface, barva, polje)
+                
+                # Koordinate vrstic
+                if stolpec == 0:
+                    barva = izgled.ozadje.temno if vrstica % 2 == 0 else izgled.ozadje.svetlo
+                    
+                    # Oznaka
+                    oznaka = self.konfig.font.render(str(VRSTICE-vrstica), 1, barva)
+                    oznaka_poz = (5, 5 + vrstica * POLJE_VELIKOST)
+                    
+                    # Blit metode
+                    surface.blit(oznaka, oznaka_poz)
+                    
+                # Koordinate stolpcev
+                if vrstica == 7:
+                    barva = izgled.ozadje.temno if (vrstica + stolpec) % 2 == 0 else izgled.ozadje.svetlo
+                    
+                    # Oznaka
+                    oznaka = self.konfig.font.render(Polje.pridobiAlfaoznako(stolpec), 1, barva)
+                    oznaka_poz = (stolpec * POLJE_VELIKOST + POLJE_VELIKOST - 20, VISINA -20)
+                    
+                    # Blit metode
+                    surface.blit(oznaka, oznaka_poz)
 
     def pokaziFigure(self, surface):
 
@@ -48,25 +71,31 @@ class Igra:
                         surface.blit(slika_var, figura.slika_rect)
                         
     def pokaziPoteze(self, surface):
+        
+        izgled = self.konfig.izgled
+        
         if self.vleka.vleka:
             figura = self.vleka.figura
 
             # Pojdi skozi vse validne poteze in prikazi
             for poteza in figura.poteze:
 
-                barva = "#C86464" if (poteza.koncno.vrstica + poteza.koncno.stolpec) % 2 == 0 else "#C84646"
+                barva = izgled.poteze.svetlo if (poteza.koncno.vrstica + poteza.koncno.stolpec) % 2 == 0 else izgled.poteze.temno
                 polje = (poteza.koncno.stolpec * POLJE_VELIKOST, poteza.koncno.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
 
                 pygame.draw.rect(surface, barva, polje)
     
     def pokaziZadnjoPotezo(self, surface):
+        
+        izgled = self.konfig.izgled
+        
         if self.plosca.zadnja_poteza:
             zacetno = self.plosca.zadnja_poteza.zacetno
             koncno = self.plosca.zadnja_poteza.koncno
             
             # Prikazi potezo
             for poz in [zacetno, koncno]:
-                barva = (244, 247, 116) if (poz.vrstica + poz.stolpec) % 2 == 0 else (172, 195, 51)
+                barva = izgled.sled.svetlo if (poz.vrstica + poz.stolpec) % 2 == 0 else izgled.sled.temno
                 polje = (poz.stolpec * POLJE_VELIKOST, poz.vrstica * POLJE_VELIKOST, POLJE_VELIKOST, POLJE_VELIKOST)
                 pygame.draw.rect(surface, barva, polje)
     
@@ -86,3 +115,15 @@ class Igra:
     def nastavi_prekrito(self, vrstica, stolpec):
         
         self.prekrito_polje = self.plosca.polja[vrstica][stolpec]
+    
+    def spremeniIzgled(self):
+        self.konfig.spremeniIzgled()
+        
+    def predvajajZvok(self, pojeden = False):
+        if pojeden:
+            self.konfig.pojej_zvok.predvajaj()
+        else:
+            self.konfig.poteza_zvok.predvajaj()
+            
+    def resetiraj(self):
+        self.__init__()

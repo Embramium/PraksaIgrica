@@ -64,11 +64,13 @@ class Trdnjava(Figura):
 class Kraljica(Figura):
 
     def __init__(self, barva):
-
+        
         super().__init__('kraljica', barva, 9.0)
 
 class Kralj(Figura):
 
     def __init__(self, barva):
         
+        self.leva_trdnjava = None
+        self.desna_trdnjava = None
         super().__init__('kralj', barva, 10000.0)

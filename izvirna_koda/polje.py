@@ -2,11 +2,14 @@
 # Definicija polj (kvadratkov) - Eman
 class Polje:
 
+    ALFAOZNAKA = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
+    
     def __init__(self, vrstica, stolpec, figura = None):
         
         self.vrstica = vrstica
         self.stolpec = stolpec
         self.figura = figura
+        self.alfaoznaka = self.ALFAOZNAKA[stolpec]
 
     def __eq__(self, other):
         
@@ -39,3 +42,8 @@ class Polje:
                 return False
         
         return True
+    
+    @staticmethod
+    def pridobiAlfaoznako(stolpec):
+        ALFAOZNAKA = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
+        return ALFAOZNAKA[stolpec]

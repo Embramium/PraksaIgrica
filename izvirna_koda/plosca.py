@@ -25,16 +25,38 @@ class Plosca:
         # Posodobitev konzolne plosce
         self.polja[zacetno.vrstica][zacetno.stolpec].figura = None
         self.polja[koncno.vrstica][koncno.stolpec].figura = figura
+        
+        # Promocija kmeta
+        if isinstance(figura, Kmet):
+            self.preveriPromocija(figura, koncno)
+            
+        # Rosada
+        if isinstance(figura, Kralj):
+            if self.rosada(zacetno, koncno):
+                razlika = koncno.stolpec - zacetno.stolpec
+                trdnjava = figura.leva_trdnjava if (razlika < 0) else figura.desna_trdnjava
+                
+                self.premik(trdnjava, trdnjava.poteze[-1])
+                            
+        
         figura.premaknjen = True
 
         # Pobrise seznam pravilnih potez in nastavi zadnjo potezo
         figura.pobrisiPoteze()
         self.zadnja_poteza = poteza
+    
 
     def pravilniPremik(self, figura, poteza):
 
         return poteza in figura.poteze
 
+    def preveriPromocija(self, figura, koncno):
+        if koncno.vrstica == 0 or koncno.vrstica == 7:
+            self.polja[koncno.vrstica][koncno.stolpec].figura = Kraljica(figura.barva)
+    
+    def rosada(self, zacetno, koncno):
+        return abs(zacetno.stolpec - koncno.stolpec) == 2
+    
     def zracunajPoteze(self, figura, vrstica, stolpec):
         
         # Zracunaj vse mozne poteze dolocene figure na dolocenem mestu - Eman
@@ -181,6 +203,60 @@ class Plosca:
                         figura.dodajPotezo(poteza)
             
             # Rosada
+            if not figura.premaknjen:
+                
+                # Dolga 
+                leva_trdnjava = self.polja[vrstica][0].figura
+                if isinstance(leva_trdnjava, Trdnjava):
+                    if not leva_trdnjava.premaknjen:
+                        
+                        for stlp in range(1, 4):
+                            if self.polja[vrstica][stlp].imaFiguro(): # rosada ni mogoca
+                                break
+                            
+                            if stlp == 3:
+                                
+                                # Poda levo trdnjavo kot kraljev atribut
+                                figura.leva_trdnjava = leva_trdnjava
+                                
+                                # Premik trdnjave
+                                zacetno = Polje(vrstica, 0)
+                                koncno = Polje(vrstica, 3)
+                                poteza = Poteza(zacetno, koncno)
+                                leva_trdnjava.dodajPotezo(poteza)
+                                
+                                # Premik kralja
+                                zacetno = Polje(vrstica, stolpec)
+                                koncno = Polje(vrstica, 2)
+                                poteza = Poteza(zacetno, koncno)
+                                figura.dodajPotezo(poteza)
+                                
+                # Kratka
+                desna_trdnjava = self.polja[vrstica][7].figura
+                if isinstance(desna_trdnjava, Trdnjava):
+                    if not desna_trdnjava.premaknjen:
+                        
+                        for stlp in range(5, 7):
+                            if self.polja[vrstica][stlp].imaFiguro(): # rosada ni mogoca
+                                break
+                            
+                            if stlp == 6:
+                                
+                                # Poda desno trdnjavo kot kraljev atribut
+                                figura.desna_trdnjava = desna_trdnjava
+                                
+                                # Premik trdnjave
+                                zacetno = Polje(vrstica, 7)
+                                koncno = Polje(vrstica, 5)
+                                poteza = Poteza(zacetno, koncno)
+                                desna_trdnjava.dodajPotezo(poteza)
+                                
+                                # Premik kralja
+                                zacetno = Polje(vrstica, stolpec)
+                                koncno = Polje(vrstica, 6)
+                                poteza = Poteza(zacetno, koncno)
+                                figura.dodajPotezo(poteza)
+                                
 
         if isinstance(figura, Kmet):
             kmetPoteze()

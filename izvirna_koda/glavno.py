@@ -4,7 +4,6 @@ from konst import *
 from izris_igre import Igra
 from polje import Polje
 from poteza import Poteza
-
 class Glavno:
 
     def __init__(self):
@@ -96,7 +95,12 @@ class Glavno:
 
                         # Preveri ali je poteza pravilna
                         if plosca.pravilniPremik(vleka.figura, premik):
+                            
+                            pojeden = plosca.polja[vrstica_spustitve][stolpec_spustitve].imaFiguro()
                             plosca.premik(vleka.figura, premik)
+                            
+                            # Zvokovi
+                            igra.predvajajZvok(pojeden)
 
                             # Metode prikazovanja
                             igra.pokaziOzadje(zaslon)
@@ -108,7 +112,21 @@ class Glavno:
 
 
                     vleka.nehajVlectFiguro()
-
+                    
+                # Naredi ob pritisku tipke
+                elif event.type == pygame.KEYDOWN:
+                    
+                    if event.key == pygame.K_i:
+                        igra.spremeniIzgled()
+                        
+                    if event.key == pygame.K_r:
+                        igra.resetiraj()
+                        
+                        # Ponastavljene vrednosti
+                        igra = self.igra
+                        plosca = self.igra.plosca
+                        vleka = self.igra.vleka
+                
                 # Naredi ob izhodu
                 if event.type == pygame.QUIT:
 

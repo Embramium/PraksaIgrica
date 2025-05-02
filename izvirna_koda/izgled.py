@@ -1,5 +1,5 @@
 from barva import Barva
-from izvirna_koda import barva
+
 
 class Izgled:
 
