@@ -117,13 +117,16 @@ class Igra:
         self.prekrito_polje = self.plosca.polja[vrstica][stolpec]
     
     def spremeniIzgled(self):
+        
         self.konfig.spremeniIzgled()
         
     def predvajajZvok(self, pojeden = False):
+        
         if pojeden:
             self.konfig.pojej_zvok.predvajaj()
         else:
             self.konfig.poteza_zvok.predvajaj()
             
     def resetiraj(self):
+        
         self.__init__()

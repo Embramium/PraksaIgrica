@@ -41,6 +41,8 @@ class Kmet(Figura):
         else:
             self.smer = 1
         
+        self.en_passant = False
+        
         super().__init__('kmet',barva, 1.0)
 
 class Skakac(Figura):
@@ -73,4 +75,5 @@ class Kralj(Figura):
         
         self.leva_trdnjava = None
         self.desna_trdnjava = None
+        
         super().__init__('kralj', barva, 10000.0)

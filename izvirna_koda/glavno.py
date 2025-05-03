@@ -50,7 +50,7 @@ class Glavno:
                         
                         # Preveri barvo in povleci
                         if figura.barva == igra.naslednji_igralec:
-                            plosca.zracunajPoteze(figura, kliknjena_vrstica, kliknjen_stolpec)
+                            plosca.zracunajPoteze(figura, kliknjena_vrstica, kliknjen_stolpec, bool = True) # bool vrednost ki prepreci neskoncno zanko
                             vleka.shraniZacetnoPoz(event.pos)
                             vleka.vleciFiguro(figura)
 
@@ -96,8 +96,11 @@ class Glavno:
                         # Preveri ali je poteza pravilna
                         if plosca.pravilniPremik(vleka.figura, premik):
                             
+                            # Normalno pojeden
                             pojeden = plosca.polja[vrstica_spustitve][stolpec_spustitve].imaFiguro()
                             plosca.premik(vleka.figura, premik)
+                            
+                            plosca.nastaviTrueEnPassant(vleka.figura)
                             
                             # Zvokovi
                             igra.predvajajZvok(pojeden)

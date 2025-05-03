@@ -32,6 +32,7 @@ class Polje:
         return self.imaFiguro() and self.figura.barva != barva
 
     def praznoAliNasprotnik(self, barva):
+        
         return self.jePrazno() or self.imaNasprotnik(barva)
 
     @staticmethod
@@ -45,5 +46,6 @@ class Polje:
     
     @staticmethod
     def pridobiAlfaoznako(stolpec):
+        
         ALFAOZNAKA = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
         return ALFAOZNAKA[stolpec]
