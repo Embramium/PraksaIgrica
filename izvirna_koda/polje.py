@@ -1,5 +1,5 @@
 
-# Definicija polj (kvadratkov) - Eman
+# Definicija polj (kvadratkov)
 class Polje:
 
     ALFAOZNAKA = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
@@ -11,6 +11,7 @@ class Polje:
         self.figura = figura
         self.alfaoznaka = self.ALFAOZNAKA[stolpec]
 
+    # Dunder Metoda
     def __eq__(self, other):
         
         return self.vrstica == other.vrstica and self.stolpec == other.stolpec
@@ -35,6 +36,7 @@ class Polje:
         
         return self.jePrazno() or self.imaNasprotnik(barva)
 
+    # Staticne metode ki se uporabljajo na vsem  ne samo "Polje" objektih
     @staticmethod
     def vDosegu(*args):
 

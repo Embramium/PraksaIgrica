@@ -8,7 +8,7 @@ from konfig import Konfig
 
 class Igra:
 
-    # Inicializacija - Eman
+    # Inicializacija
     def __init__(self):
         
         self.naslednji_igralec = "bela"
@@ -17,7 +17,7 @@ class Igra:
         self.vleka = Vleka()
         self.konfig = Konfig()
 
-    # Blit metode - Eman
+    # Blit metode
     def pokaziOzadje(self, surface):
         
         izgled = self.konfig.izgled
@@ -58,11 +58,11 @@ class Igra:
         for vrstica in range(VRSTICE):
             for stolpec in range(STOLPCI):
 
-                # Preveri ce je na polju figura - Eman
+                # Preveri ce je na polju figura
                 if self.plosca.polja[vrstica][stolpec].imaFiguro():
                     figura = self.plosca.polja[vrstica][stolpec].figura
 
-                    # Dodeli sliko in izrise (razen vlecenih) - Eman
+                    # Dodeli sliko in izrise (razen vlecenih)
                     if figura is not self.vleka.figura:
                         figura.nastaviSliko(velikost = 80)
                         slika_var = pygame.image.load(figura.slika)

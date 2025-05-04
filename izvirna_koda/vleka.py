@@ -2,7 +2,7 @@
 import pygame
 from konst import *
 
-# Razred za vleko oz. premikanje figur - Eman
+# Razred za vleko oz. premikanje figur
 class Vleka():
 
     def __init__(self):

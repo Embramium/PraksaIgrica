@@ -10,7 +10,7 @@ from zvok import Zvok
 
 class Plosca:
 
-    # Definicija plosce - Eman
+    # Definicija plosce
     def __init__(self):
         
         self.polja = [[0, 0, 0, 0, 0, 0, 0, 0] for stolpec in range(STOLPCI)]
@@ -117,7 +117,7 @@ class Plosca:
     def zracunajPoteze(self, figura, vrstica, stolpec, bool = True):
         
         
-        # Zracunaj vse mozne poteze dolocene figure na dolocenem mestu - Eman
+        # Zracunaj vse mozne poteze dolocene figure na dolocenem mestu
         
         def kmetPoteze():
             

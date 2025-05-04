@@ -3,7 +3,7 @@ import os
 
 class Figura:
 
-    # Definicija figur - Eman
+    # Definicija figur
     def __init__(self, ime, barva, vrednost, slika = None, slika_rect = None):
 
         self.ime = ime
@@ -18,7 +18,7 @@ class Figura:
         self.nastaviSliko()
         self.slika_rect = slika_rect
 
-    # Nastavi primerno sliko iz sredstev - Eman
+    # Nastavi primerno sliko iz sredstev
     def nastaviSliko(self, velikost = 80):
         
         self.slika = os.path.join(f'sredstva/slike/slike-{velikost}px/{self.barva}_{self.ime}.png')
@@ -31,7 +31,7 @@ class Figura:
 
         self.poteze = []
 
-# Inicializacija vseh figur - Eman
+# Inicializacija vseh figur
 class Kmet(Figura):
 
     def __init__(self, barva):

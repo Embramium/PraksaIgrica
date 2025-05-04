@@ -16,7 +16,7 @@ class Glavno:
         pygame.display.set_caption("Šah")
         self.igra = Igra()
     
-    # Glavna izvrsilna zanka - Eman
+    # Glavna izvrsilna zanka
     def glavnaZanka(self):
         
         igra = self.igra

@@ -1,3 +1,4 @@
+from ast import NodeVisitor
 import pygame
 import os
 import sqlite3
@@ -72,8 +73,15 @@ class Konfig:
         ognjena = Izgled((255, 85, 0), (100, 0, 0), (255, 150, 50), (150, 50, 0), "#FF4500", "#8B0000")
         ledena = Izgled((210, 240, 255), (100, 170, 200), (180, 220, 240), (80, 130, 160), "#A0E9FF", "#408FA3")
         galaksija = Izgled((25, 0, 51), (75, 0, 130), (138, 43, 226), (0, 0, 80), "#DA70D6", "#8A2BE2")
+        puščavska = Izgled((250, 240, 219), (189, 154, 122), (255, 223, 170), (204, 153, 102), "#C68642", "#8B5A2B")
+        gozdna = Izgled((210, 230, 200), (85, 107, 47), (144, 238, 144), (34, 139, 34), "#228B22", "#006400")
+        vulkanska = Izgled((255, 235, 205), (139, 0, 0), (255, 100, 50), (100, 0, 0), "#FF6347", "#8B0000")
+        pivska = Izgled((255, 248, 220), (210, 180, 140), (255, 215, 0), (184, 134, 11), "#DAA520", "#8B4513")
+        nocna = Izgled((30, 30, 60), (10, 10, 30), (70, 70, 100), (20, 20, 40), "#4169E1", "#191970")
+        nevihtna = Izgled((220, 220, 220), (105, 105, 105), (176, 196, 222), (70, 70, 90), "#708090", "#2F4F4F")
+        roznata = Izgled((255, 228, 225), (255, 105, 180), (255, 182, 193), (255, 20, 147), "#DB7093", "#C71585")
 
-        self.izgledi = [zelena, rjava, modra, siva, cyberpunk, matrix, sladoled, ognjena, ledena, galaksija]
+        self.izgledi = [zelena, rjava, modra, siva, cyberpunk, matrix, sladoled, ognjena, ledena, galaksija, puščavska, gozdna, vulkanska, pivska, nocna, nevihtna, roznata]
         
     def _ustvariBazo(self):
         
