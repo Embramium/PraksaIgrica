@@ -1,9 +1,12 @@
 
 import pygame, sys
+
 from konst import *
 from izris_igre import Igra
 from polje import Polje
 from poteza import Poteza
+
+
 class Glavno:
 
     def __init__(self):
@@ -132,9 +135,10 @@ class Glavno:
                 
                 # Naredi ob izhodu
                 if event.type == pygame.QUIT:
-
+                    
                     pygame.quit()
                     sys.exit()
+                    
             
             pygame.display.update()
 
